@@ -14,32 +14,20 @@ fn main() {
     }
     let args: Vec<String> = env::args().collect();
     if args.len() < 7 {
-        print!("invoke with arguments as \nkey [range] [max_inp] [max_pre] [num_responses] [num_states] [alphabet]\n");
+        print!("invoke with arguments as \nkey [range] [max_in_len] [max_out_len] [responses] [states] [alphabet]\n");
         std::process::exit(0);
     }
-    let range = match args[1].parse::<u8>() {
-        Ok(u) => u,
-        Err(_) => 2,
-    };
-    let max_inp = match args[2].parse::<usize>() {
-        Ok(u) => u,
-        Err(_) => 2,
-    };
-    let max_pre = match args[3].parse::<usize>() {
-        Ok(u) => u,
-        Err(_) => 2,
-    };
-    let num_responses = match args[4].parse::<usize>() {
-        Ok(u) => u,
-        Err(_) => 2,
-    };
-    let num_states = match args[5].parse::<usize>() {
-        Ok(u) => u,
-        Err(_) => 2,
-    };
+    let range = args[1].parse::<u8>().unwrap();
+    let max_in_len = args[2].parse::<usize>().unwrap(); 
+    let max_out_len = args[3].parse::<usize>().unwrap(); 
+    let responses = args[4].parse::<usize>().unwrap(); 
+    let states = args[5].parse::<usize>().unwrap();  
     let alphabet = &args[6];
-    let k = random_key(range, max_inp, max_pre, num_responses,num_states);
-    print_key(&k, alphabet);
-    print!("SUCCESS\n{}\n",key_as_string(&k,alphabet));
+    let k = random_key(range, max_in_len, max_out_len, responses,states);
+    print!("SUCCESS\n");
+    print_key(&k, alphabet); 
+    
+
+    //print!("SUCCESS\n{}\n",key_as_string(&k,alphabet));
     write_key(&k, alphabet);
 }
