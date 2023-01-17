@@ -26,8 +26,6 @@ fn main() {
     let k = random_key(range, max_in_len, max_out_len, responses,states);
     print!("SUCCESS\n");
     print_key(&k, alphabet); 
-    
-
     //print!("SUCCESS\n{}\n",key_as_string(&k,alphabet));
     write_key(&k, alphabet);
 }
